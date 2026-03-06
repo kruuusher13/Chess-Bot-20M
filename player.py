@@ -85,7 +85,8 @@ class TransformerPlayer(Player):
         )
 
         state_dict = torch.load(weights_path, map_location=self.device, weights_only=True)
-        state_dict = {k: v.float() for k, v in state_dict.items()}
+        # Strip torch.compile prefix if present
+        state_dict = {k.replace("_orig_mod.", ""): v.float() for k, v in state_dict.items()}
         self.model.load_state_dict(state_dict)
         self.model.to(self.device)
         self.model.eval()
