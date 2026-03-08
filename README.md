@@ -193,6 +193,7 @@ print(move)  # "e2e4"
 ## Repository
 
 - **GitHub:** [kruuusher13/Chess-Bot-20M](https://github.com/kruuusher13/Chess-Bot-20M)
+- **HuggingFace:** [kruuusher13/MicroChess-20M](https://huggingface.co/kruuusher13/MicroChess-20M)
 
 ## Limitations
 
