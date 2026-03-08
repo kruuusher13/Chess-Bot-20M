@@ -56,7 +56,7 @@ class Player:
 
 
 class TransformerPlayer(Player):
-    def __init__(self, name: str = "PawnStar"):
+    def __init__(self, name: str = "Chess-Bot-20M"):
         super().__init__(name)
 
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
