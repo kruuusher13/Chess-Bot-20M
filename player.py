@@ -1,7 +1,14 @@
 import os
+import sys
 import json
 import torch
 import chess
+
+# Ensure the repo root is on sys.path so "model" package is importable
+# when this file is loaded via importlib from an external working directory.
+_repo_root = os.path.dirname(os.path.abspath(__file__))
+if _repo_root not in sys.path:
+    sys.path.insert(0, _repo_root)
 
 from model.tokenizer import FENTokenizer
 from model.move_vocab import build_move_vocab
