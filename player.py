@@ -14,6 +14,22 @@ from model.tokenizer import FENTokenizer
 from model.move_vocab import build_move_vocab
 from model.architecture import ChessTransformer
 
+# Import Player base class from teacher's chess_tournament if available,
+# otherwise define a compatible fallback so the file works standalone.
+try:
+    from chess_tournament import Player
+except ImportError:
+    from abc import ABC, abstractmethod
+    from typing import Optional
+
+    class Player(ABC):
+        def __init__(self, name: str):
+            self.name = name
+
+        @abstractmethod
+        def get_move(self, fen: str) -> Optional[str]:
+            pass
+
 
 # ---- Opening Book ----
 # Strong mainline openings (UCI move sequences).
@@ -52,14 +68,6 @@ PIECE_VALUES = {
     chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
     chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0,
 }
-
-
-class Player:
-    def __init__(self, name: str):
-        self.name = name
-
-    def get_move(self, fen: str):
-        raise NotImplementedError
 
 
 class TransformerPlayer(Player):
